@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -9,24 +8,19 @@ public class Main {
 
 
 
-        messages m1 = new messages("A");
-        messages m2 = new messages("B");
-        messages m3 = new messages("C");
-        messages m4 = new messages("D");
-        messages m5 = new messages("E");
-        messages m6 = new messages("F");
-        messages m7 = new messages("G");
-        ArrayList<messages> b = new ArrayList<messages>();
+        Message m1 = new Message("A");
+        Message m2 = new Message("B");
+        Message m3 = new Message("C");
+        Message m4 = new Message("D");
+        ArrayList<Message> b = new ArrayList<Message>();
         b.add(m1);
         b.add(m2);
         b.add(m3);
         b.add(m4);
-        b.add(m5);
-        b.add(m6);
-        b.add(m7);
 
-        requirements mes1= new requirements(m2,"~||", m4);
-        requirements mes2= new requirements(m1,"~||", m7);
+
+        requirements mes1= new requirements(m2,"~||", m3);
+        requirements mes2= new requirements(m1,"~||", m3);
 
         ArrayList<requirements> listOfRequirements = new ArrayList<requirements>();
         listOfRequirements.add(mes1);
