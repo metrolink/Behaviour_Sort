@@ -6,32 +6,40 @@ public class Main {
 
 
     public static void main(String[] args) {
-        messageRes mes1 = new messageRes("A","||", "B");
-        messageRes mes2= new messageRes("A","||", "C");
-        messageRes mes3= new messageRes("C","||", "D");
-        messageRes mes4= new messageRes("B","||", "E");
-        messageRes mes5= new messageRes("B","~||", "D");
-        messageRes mes6= new messageRes("B","||", "F");
-        messageRes mes7= new messageRes("A","~||", "G");
 
-        List<messageRes> a = new ArrayList<messageRes>();
-        a.add(mes1);
-        a.add(mes2);
-        a.add(mes3);
-        a.add(mes4);
-        a.add(mes5);
-        a.add(mes6);
-        a.add(mes7);
 
+
+        messages m1 = new messages("A");
+        messages m2 = new messages("B");
+        messages m3 = new messages("C");
+        messages m4 = new messages("D");
+        messages m5 = new messages("E");
+        messages m6 = new messages("F");
+        messages m7 = new messages("G");
+        ArrayList<messages> b = new ArrayList<messages>();
+        b.add(m1);
+        b.add(m2);
+        b.add(m3);
+        b.add(m4);
+        b.add(m5);
+        b.add(m6);
+        b.add(m7);
+
+        requirements mes1= new requirements(m2,"~||", m4);
+        requirements mes2= new requirements(m1,"~||", m7);
+
+        ArrayList<requirements> listOfRequirements = new ArrayList<requirements>();
+        listOfRequirements.add(mes1);
+        listOfRequirements.add(mes2);
 
         SortingAlgorithm sortin = new SortingAlgorithm();
 
-        sortin.SortingBehaviours(a);
+        sortin.SortingBehaviours(b,listOfRequirements);
 
 
 
         //s.SortingBehaviours(Behaviours);
 
-        System.out.println("Hello world!");
+        //System.out.println("Hello world!");
     }
 }
