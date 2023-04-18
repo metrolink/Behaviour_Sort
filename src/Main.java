@@ -8,27 +8,31 @@ public class Main {
 
 
 
-        Message m1 = new Message("A");
-        Message m2 = new Message("B");
-        Message m3 = new Message("C");
-        Message m4 = new Message("D");
-        ArrayList<Message> b = new ArrayList<Message>();
-        b.add(m1);
-        b.add(m2);
-        b.add(m3);
-        b.add(m4);
+        Message a = new Message("A");
+        Message b = new Message("B");
+        Message c = new Message("C");
+        Message d = new Message("D");
+        ArrayList<Message> mList = new ArrayList<>();
+        mList.add(a);
+        mList.add(b);
+        mList.add(c);
+        mList.add(d);
 
 
-        requirements mes1= new requirements(m2,"~||", m3);
-        requirements mes2= new requirements(m1,"~||", m3);
+        ArrayList<Message> res1= new ArrayList<>();
+        res1.add(b);
+        res1.add(c);
+        ArrayList<Message> res2= new ArrayList<>();
+        res2.add(a);
+        res2.add(d);
 
-        ArrayList<requirements> listOfRequirements = new ArrayList<requirements>();
-        listOfRequirements.add(mes1);
-        listOfRequirements.add(mes2);
+        ArrayList<ArrayList<Message>> listOfRequirements = new ArrayList<>();
+        listOfRequirements.add(res1);
+        listOfRequirements.add(res2);
 
         SortingAlgorithm sortin = new SortingAlgorithm();
 
-        sortin.SortingBehaviours(b,listOfRequirements);
+        sortin.markSets(mList,listOfRequirements);
 
 
 

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 class requirements {
     requirements(Message mName1, String pType, Message mName2){
@@ -31,55 +32,57 @@ class Message {
     }
 }
 public class SortingAlgorithm {
-
-
-    ArrayList<ArrayList<Message>> ListBehaviours = new ArrayList<>();
-    void SortingBehaviours(ArrayList<Message> listOfMessages, ArrayList<requirements> listOfReq) {
+    public static ArrayList<ArrayList<Message>> markSets(ArrayList<Message> S, ArrayList<ArrayList<Message>> markings) {
         ArrayList<ArrayList<Message>> markedSets = new ArrayList<>();
-        markedSets.add(listOfMessages);
+        markedSets.add(S);
 
-        for (int i = 0; i < listOfReq.size(); i++){
-            ArrayList<ArrayList<Message>> newMarkedSet = new ArrayList<>();
-            for(int j = 0; j < markedSets.size(); j++){
+        for (int i = 0; i < markings.size(); i++) {
+            ArrayList<ArrayList<Message>> newMarkedSets = new ArrayList<>();
+
+            for (int j = 0; j < markedSets.size(); j++) {
                 ArrayList<Message> markedSet = markedSets.get(j);
-                requirements marking = listOfReq.get(j);
+                ArrayList<Message> marking = markings.get(i);
 
-                Message markedElement1 = marking.messageName1;
-                markedElement1.setSelfLoop(true);
-                Message markedElement2 = marking.messageName2;
-                markedElement2.setSelfLoop(true);
+                Message markedElement1 = marking.get(0);
+                Message markedElement2 = marking.get(1);
 
-                var unMarkedElements1 = markedSet.stream().filter(element -> element != markedElement1);
-                var unmarkedElements2 = markedSet.stream().filter(element -> element != markedElement2);
-                ArrayList<Message> markedSubSet1 = new ArrayList<>();
-                markedSubSet1.add(markedElement1);
-                markedSubSet1.addAll(unMarkedElements1.toList());
+                ArrayList<Message> unmarkedElements1 = new ArrayList<>();
+                ArrayList<Message> unmarkedElements2 = new ArrayList<>();
 
-                ArrayList<Message> markedSubSet2 = new ArrayList<>();
-                markedSubSet2.add(markedElement2);
-                markedSubSet2.addAll(unmarkedElements2.toList());
+                for (int k = 0; k < markedSet.size(); k++) {
+                    Message element = markedSet.get(k);
 
+                    if (element != markedElement1) {
+                        unmarkedElements1.add(element);
+                    }
 
-                newMarkedSet.add(markedSubSet1);
-                newMarkedSet.add(markedSubSet2);
+                    if (element != markedElement2) {
+                        unmarkedElements2.add(element);
+                    }
+                }
 
-                markedElement1.setSelfLoop(false);
-                markedElement2.setSelfLoop(false);
+                ArrayList<Message> markedSubset1 = new ArrayList<>();
+                ArrayList<Message> markedSubset2 = new ArrayList<>();
 
+                markedSubset1.add(markedElement1);
+                markedSubset1.addAll(unmarkedElements2);
+
+                markedSubset2.add(markedElement2);
+                markedSubset2.addAll(unmarkedElements1);
+
+                newMarkedSets.add(markedSubset1);
+                newMarkedSets.add(markedSubset2);
             }
-            markedSets = newMarkedSet;
+
+            markedSets = newMarkedSets;
         }
-
-        for(ArrayList<Message> mes : markedSets) {
-            for (Message message : mes) {
-                System.out.print(message.toString() + ", ");
+        for (ArrayList<Message> r : markedSets) {
+            for (Message inM : r) {
+                System.out.print(inM.name + ", ");
             }
-
             System.out.println();
         }
 
-
-
-
+        return markedSets;
     }
 }
